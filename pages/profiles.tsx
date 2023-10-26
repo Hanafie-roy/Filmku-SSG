@@ -16,13 +16,13 @@ interface UserCardProps {
   name: string;
 }
 
-export async function getServerSideProps(context: NextPageContext) {
+export async function getStaticProps(context: NextPageContext) {
   const session = await getSession(context);
 
-  if (!session) {
+  if (session) {
     return {
       redirect: {
-        destination: '/auth',
+        destination: '/',
         permanent: false,
       }
     }
@@ -32,6 +32,7 @@ export async function getServerSideProps(context: NextPageContext) {
     props: {}
   }
 }
+
 
 const UserCard: React.FC<UserCardProps> = ({ name }) => {
   const imgSrc = images[Math.floor(Math.random() * 4)];
