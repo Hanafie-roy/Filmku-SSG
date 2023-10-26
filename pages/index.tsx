@@ -1,7 +1,6 @@
 import React from 'react';
 import { NextPageContext } from 'next';
 import { getSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
 
 import Navbar from '@/components/Navbar';
 import Billboard from '@/components/Billboard';
@@ -11,7 +10,7 @@ import useMovieList from '@/hooks/useMovieList';
 import useFavorites from '@/hooks/useFavorites';
 import useInfoModalStore from '@/hooks/useInfoModalStore';
 
-export async function getStaticPaths(context: NextPageContext) {
+export async function getServerSideProps(context: NextPageContext) {
   const session = await getSession(context);
 
   if (!session) {
@@ -29,7 +28,6 @@ export async function getStaticPaths(context: NextPageContext) {
 }
 
 const Home = () => {
-  const router = useRouter();
   const { data: movies = [] } = useMovieList();
   const { data: favorites = [] } = useFavorites();
   const {isOpen, closeModal} = useInfoModalStore();
