@@ -16,7 +16,7 @@ interface UserCardProps {
   name: string;
 }
 
-export async function getStaticProps(context: NextPageContext) {
+export async function getStaticPaths(context: NextPageContext) {
   const session = await getSession(context);
 
   if (session) {
