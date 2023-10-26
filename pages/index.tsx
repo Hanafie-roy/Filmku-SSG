@@ -11,7 +11,7 @@ import useMovieList from '@/hooks/useMovieList';
 import useFavorites from '@/hooks/useFavorites';
 import useInfoModalStore from '@/hooks/useInfoModalStore';
 
-export async function getStaticPatch(context: NextPageContext) {
+export async function getStaticPaths(context: NextPageContext) {
   const session = await getSession(context);
 
   if (!session) {
